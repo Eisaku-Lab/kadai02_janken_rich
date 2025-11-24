@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="css/sample.css">
+  <title>じゃんけん</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>限定じゃんけん
+    </h1>
+    <h5 class="subtitle">
+      ルール：グー・チョキ・パーそれぞれ2回ずつ出せます<br>
+      ★が0になった方の負けです
+    </h5>
+  </header>
+
+  <main>
+    <div class="game_status">
+      <div class="player-card">
+        <h3 class="player_status">
+          👤 あなた
+        </h3>
+        <div class="star-display">
+          ★：<span id="player_star" class="star-count">2</span>
+        </div>
+        <div class="hand-counter">
+          <div class="hand-item">
+            <span class="hand-emoji">✊</span>
+            <div class="dots">
+              <span class="dot" data-hand="gu" data-player="player" data-index="1">●</span>
+              <span class="dot" data-hand="gu" data-player="player" data-index="2">●</span>
+            </div>
+          </div>
+          <div class="hand-item">
+            <span class="hand-emoji">✌️</span>
+            <div class="dots">
+              <span class="dot" data-hand="cho" data-player="player" data-index="1">●</span>
+              <span class="dot" data-hand="cho" data-player="player" data-index="2">●</span>
+            </div>
+          </div>
+          <div class="hand-item">
+            <span class="hand-emoji">✋</span>
+            <div class="dots">
+              <span class="dot" data-hand="par" data-player="player" data-index="1">●</span>
+              <span class="dot" data-hand="par" data-player="player" data-index="2">●</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-badge">VS</div>
+
+      <div class="computer-card">
+        <h3 id="computer_status">
+          🤖 コンピュータ
+        </h3>
+        <div class="star-display">
+          ★：<span id="computer_star" class="star-count">2</span>
+        </div>
+        <div class="hand-counter">
+          <div class="hand-item">
+            <span class="hand-emoji">✊</span>
+            <div class="dots">
+              <span class="dot" data-hand="gu" data-player="computer" data-index="1">●</span>
+              <span class="dot" data-hand="gu" data-player="computer" data-index="2">●</span>
+            </div>
+          </div>
+          <div class="hand-item">
+            <span class="hand-emoji">✌️</span>
+            <div class="dots">
+              <span class="dot" data-hand="cho" data-player="computer" data-index="1">●</span>
+              <span class="dot" data-hand="cho" data-player="computer" data-index="2">●</span>
+            </div>
+          </div>
+          <div class="hand-item">
+            <span class="hand-emoji">✋</span>
+            <div class="dots">
+              <span class="dot" data-hand="par" data-player="computer" data-index="1">●</span>
+              <span class="dot" data-hand="par" data-player="computer" data-index="2">●</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="computer-hand-area">
+      <h3 id="computer-hand" class="computer-hand-title">
+        コンピュータの手
+      </h3>
+      <div id="computer-hand-img" class="computer-hand-img">
+        <div class="question-mark">❓</div>
+      </div>
+    </div>
+
+    <div id="judgment" class="judgment-default">じゃんけんの手を選んでください</div>
+
+    <ul class="hand-buttons">
+      <li id="gu_btn" class="hand-btn" data-hand="gu">
+        <div class="btn-content">
+          <img src="./img/グー.jpg" class="hand-img" alt="グー">
+          <div class="btn-label">
+            グー
+          </div>
+        </div>
+      </li>
+      <li id="cho_btn" class="hand-btn" data-hand="cho">
+        <div class="btn-content">
+          <img src="./img/チョキ.jpg" class="hand-img" alt="チョキ">
+          <div class="btn-label">チョキ</div>
+        </div>
+      </li>
+      <li id="par_btn" class="hand-btn" data-hand="par">
+        <div class="btn-content">
+          <img src="./img/パー.jpg" class="hand-img" alt="パー">
+          <div class="btn-label">パー</div>
+        </div>
+      </li>
+    </ul>
+  </main>
+
+  <footer></footer>
+  <script>
+    //じゃんけん用のSCRIPTを書いてください
+
+    //星と手札//
+    let playerStar = 2; //プレイヤーの星
+    let computerStar = 2; //コンピュータの星
+    let playcard = [0, 2, 2, 2] //プレイヤーのカード[使わない,グー,チョキ,パー]
+    let computercard = [0, 2, 2, 2] //プレイヤーのカード[使わない,グー,チョキ,パー]
+    let gameover = false;
+
+
+    //じゃんけんボタン押下//
+    $("#gu_btn").on("click", function () { //グーボタンを押す//
+
+
+      const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字を生成
+      if (computercard[1] >= 1 && r == 1) {
+        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">'); //1のきコンピュータはグー//
+        $("#judgment").html("あいこ"); //結果はあいこ//
+        playcard[1] = playcard[1] - 1;
+        computercard[1] = computercard[1] - 1;
+      }
+
+      if (computercard[2] >= 1 && r == 2) {
+        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#judgment").html("勝ち");
+        computerStar = computerStar - 1;
+        playcard[1] = playcard[1] - 1;
+        computercard[2] = computercard[2] - 1;
+      }
+
+      if (computercard[3] >= 1 && r == 3) {
+        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#judgment").html("負け");
+        playerStar = playerStar - 1;
+        playcard[1] = playcard[1] - 1;
+        computercard[3] = computercard[3] - 1;
+      }
+
+      //カードの消費
+      // playcard[g] = playcard[g] - 1;
+      // computercard[r] = computercard[r] - 1;
+
+      //画面更新
+      update();
+
+    })
+
+    $("#cho_btn").on("click", function () { //グーボタンを押す//
+
+
+      const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字
+      if (computercard[1] >= 1 && r == 1) {
+        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">');
+        $("#judgment").html("負け");
+        playerStar = playerStar - 1;
+        playcard[2] = playcard[2] - 1;
+        computercard[1] = computercard[1] - 1;
+      }
+      if (computercard[2] >= 1 && r == 2) {
+        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#judgment").html("あいこ");
+        playcard[2] = playcard[2] - 1;
+        computercard[2] = computercard[2] - 1;
+      }
+      if (computercard[3] >= 1 && r == 3) {
+        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#judgment").html("勝ち");
+        computerStar = computerStar - 1;
+        playcard[2] = playcard[2] - 1;
+        computercard[3] = computercard[3] - 1;
+      }
+
+      //カードの消費
+      // playcard[g] = playcard[g] - 1;
+      // computercard[r] = computercard[r] - 1;
+
+      //画面更新
+      update();
+
+    })
+
+    $("#par_btn").on("click", function () { //グーボタンを押す//
+
+
+      const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字
+      if (computercard[1] >= 1 && r == 1) {
+        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">');
+        $("#judgment").html("勝ち");
+        computerStar = computerStar - 1;
+        playcard[3] = playcard[3] - 1;
+        computercard[1] = computercard[1] - 1;
+      }
+      if (computercard[2] >= 1 && r == 2) {
+        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#judgment").html("負け");
+        playerStar = playerStar - 1;
+        playcard[3] = playcard[3] - 1;
+        computercard[2] = computercard[2] - 1;
+      }
+      if (computercard[3] >= 1 && r == 3) {
+        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#judgment").html("あいこ");
+        playcard[3] = playcard[3] - 1;
+        computercard[3] = computercard[3] - 1;
+      }
+
+      //カードの消費
+      // playcard[g] = playcard[g] - 1;
+      // computercard[r] = computercard[r] - 1;
+
+      //画面更新
+      update();
+
+    })
+
+    function update() {
+      $("#player_star").text(playerStar);
+      $("#computer_star").text(computerStar);
+
+      // ボタンの有効/無効を更新
+      function updateButtons() {
+        $("#gu_btn").toggleClass("disabled", playcard[1] <= 0 || gameover);
+        $("#cho_btn").toggleClass("disabled", playcard[2] <= 0 || gameover);
+        $("#par_btn").toggleClass("disabled", playcard[3] <= 0 || gameover);
+      }
+
+      // ドットの表示を更新
+      function updateDots() {
+        // プレイヤー
+        $('[data-player="player"][data-hand="gu"]').each(function (i) {
+          $(this).toggleClass("used", i >= playcard[1]);
+        });
+        $('[data-player="player"][data-hand="cho"]').each(function (i) {
+          $(this).toggleClass("used", i >= playcard[2]);
+        });
+        $('[data-player="player"][data-hand="par"]').each(function (i) {
+          $(this).toggleClass("used", i >= playcard[3]);
+        });
+
+        // コンピュータ
+        $('[data-player="computer"][data-hand="gu"]').each(function (i) {
+          $(this).toggleClass("used", i >= computercard[1]);
+        });
+        $('[data-player="computer"][data-hand="cho"]').each(function (i) {
+          $(this).toggleClass("used", i >= computercard[2]);
+        });
+        $('[data-player="computer"][data-hand="par"]').each(function (i) {
+          $(this).toggleClass("used", i >= computercard[3]);
+        });
+      }
+
+
+      if (computerStar == 0) {
+        $("#judgment").html("🎉 試合終了：あなたの勝利です！ 🎉");
+        gameover = true;
+      }
+
+      if (playerStar == 0) {
+        $("#judgment").html("😢 試合終了：あなたの負けです 😢");
+        gameover = true;
+      }
+
+
+      // ドット表示を更新
+      updateDots();
+
+      // ボタンの有効/無効を更新
+      updateButtons();
+
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>

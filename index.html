@@ -117,7 +117,7 @@
       </li>
       <li id="par_btn" class="hand-btn" data-hand="par">
         <div class="btn-content">
-          <img src="./img/パー.jpg" class="hand-img" alt="パー">
+          <img src="./img/par.jpg" class="hand-img" alt="パー">
           <div class="btn-label">パー</div>
         </div>
       </li>
@@ -142,7 +142,7 @@
 
       const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字を生成
       if (computercard[1] >= 1 && r == 1) {
-        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">'); //1のきコンピュータはグー//
+        $("#computer-hand-img").html('<img src="./img/gu.jpg" width="300" height="300">'); //1のきコンピュータはグー//
         $("#judgment").html("あいこ"); //結果はあいこ//
         playcard[1] = playcard[1] - 1;
         computercard[1] = computercard[1] - 1;
@@ -157,7 +157,7 @@
       }
 
       if (computercard[3] >= 1 && r == 3) {
-        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/par.jpg" width="300" height="300">');
         $("#judgment").html("負け");
         playerStar = playerStar - 1;
         playcard[1] = playcard[1] - 1;
@@ -178,7 +178,7 @@
 
       const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字
       if (computercard[1] >= 1 && r == 1) {
-        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/gu.jpg" width="300" height="300">');
         $("#judgment").html("負け");
         playerStar = playerStar - 1;
         playcard[2] = playcard[2] - 1;
@@ -191,7 +191,7 @@
         computercard[2] = computercard[2] - 1;
       }
       if (computercard[3] >= 1 && r == 3) {
-        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/par.jpg" width="300" height="300">');
         $("#judgment").html("勝ち");
         computerStar = computerStar - 1;
         playcard[2] = playcard[2] - 1;
@@ -212,7 +212,7 @@
 
       const r = Math.ceil(Math.random() * 3); //1〜3のどれかの数字
       if (computercard[1] >= 1 && r == 1) {
-        $("#computer-hand-img").html('<img src="./img/グー.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/gu.jpg" width="300" height="300">');
         $("#judgment").html("勝ち");
         computerStar = computerStar - 1;
         playcard[3] = playcard[3] - 1;
@@ -226,7 +226,7 @@
         computercard[2] = computercard[2] - 1;
       }
       if (computercard[3] >= 1 && r == 3) {
-        $("#computer-hand-img").html('<img src="./img/パー.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/par.jpg" width="300" height="300">');
         $("#judgment").html("あいこ");
         playcard[3] = playcard[3] - 1;
         computercard[3] = computercard[3] - 1;

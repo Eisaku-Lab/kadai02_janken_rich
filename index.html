@@ -103,7 +103,7 @@
     <ul class="hand-buttons">
       <li id="gu_btn" class="hand-btn" data-hand="gu">
         <div class="btn-content">
-          <img src="./img/グー.jpg" class="hand-img" alt="グー">
+          <img src="./img/gu.jpg" class="hand-img" alt="グー">
           <div class="btn-label">
             グー
           </div>
@@ -111,7 +111,7 @@
       </li>
       <li id="cho_btn" class="hand-btn" data-hand="cho">
         <div class="btn-content">
-          <img src="./img/チョキ.jpg" class="hand-img" alt="チョキ">
+          <img src="./img/choki.jpg" class="hand-img" alt="チョキ">
           <div class="btn-label">チョキ</div>
         </div>
       </li>
@@ -149,7 +149,7 @@
       }
 
       if (computercard[2] >= 1 && r == 2) {
-        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/choki.jpg" width="300" height="300">');
         $("#judgment").html("勝ち");
         computerStar = computerStar - 1;
         playcard[1] = playcard[1] - 1;
@@ -185,7 +185,7 @@
         computercard[1] = computercard[1] - 1;
       }
       if (computercard[2] >= 1 && r == 2) {
-        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/choki.jpg" width="300" height="300">');
         $("#judgment").html("あいこ");
         playcard[2] = playcard[2] - 1;
         computercard[2] = computercard[2] - 1;
@@ -219,7 +219,7 @@
         computercard[1] = computercard[1] - 1;
       }
       if (computercard[2] >= 1 && r == 2) {
-        $("#computer-hand-img").html('<img src="./img/チョキ.jpg" width="300" height="300">');
+        $("#computer-hand-img").html('<img src="./img/choki.jpg" width="300" height="300">');
         $("#judgment").html("負け");
         playerStar = playerStar - 1;
         playcard[3] = playcard[3] - 1;
